@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @coordinator.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @coordinator.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @coordinator.password %>
+</p>
+
+<p>
+  <strong>Phonenumber:</strong>
+  <%= @coordinator.phoneNumber %>
+</p>
+
+<%= link_to 'Edit', edit_coordinator_path(@coordinator) %> |
+<%= link_to 'Back', coordinators_path %>

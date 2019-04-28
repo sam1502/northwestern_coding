@@ -1,0 +1,32 @@
+<%= form_with(model: registry, local: true) do |form| %>
+  <% if registry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(registry.errors.count, "error") %> prohibited this registry from being saved:</h2>
+
+      <ul>
+      <% registry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :registry_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location, id: :registry_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.check_box :state, id: :registry_state %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
