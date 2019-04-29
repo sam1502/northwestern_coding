@@ -7,21 +7,13 @@ class RegistriesController < ApplicationController
   end
 
   def show
-    @registry= Registry.find
-    
+    @registry= Registry.find(params[:registry_id])
   end
 
-  # GET /registries/new
   def new
     @registry = Registry.new
   end
 
-  # GET /registries/1/edit
-  def edit
-  end
-
-  # POST /registries
-  # POST /registries.json
   def create
     @registry = Registry.new(registry_params)
       if @registry.save

@@ -40,12 +40,16 @@ class CoordinatorsController < ApplicationController
     end
   end
   
+  def logout
+    reset session
+    redirect_to "/"
+  end
+  
   def show
     @coordinator = Coordinator.find(params[:coordinator_id])
   end
 
-  # PATCH/PUT /coordinators/1
-  # PATCH/PUT /coordinators/1.json
+
   def update
     respond_to do |format|
       if @coordinator.update(coordinator_params)
