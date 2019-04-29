@@ -28,8 +28,6 @@ class CoordinatorsController < ApplicationController
   
   def create
     @coordinator = Coordinator.new(coordinator_params)
-
-    respond_to do |format|
       if @coordinator.save
         format.html { redirect_to "/home", notice: 'Coordinator was successfully created.' }
         format.json { render :show, status: :created, location: @coordinator }
@@ -37,7 +35,6 @@ class CoordinatorsController < ApplicationController
         format.html { render :new }
         format.json { render json: @coordinator.errors, status: :unprocessable_entity }
       end
-    end
   end
   
   def logout
