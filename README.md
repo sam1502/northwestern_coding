@@ -1,24 +1,23 @@
 # README
+Coding challenge for Northwestern University, for developer position.
+This code is Ruby on Rails.
+[You should have rails installed on the machine you want to run this code on.]
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run the code:
 
-Things you may want to cover:
+Clone or download the repostiory
+-- git clone [github link to repostiory]
 
-* Ruby version
+cd to repostiory
+-- cd northwestern_coding
 
-* System dependencies
+Do a bundle install
+-- bundle install
 
-* Configuration
+Migrate the db()
+-- rails db:migrate
 
-* Database creation
+Start the server
+-- rails server
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Go to localhost:3000
