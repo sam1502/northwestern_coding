@@ -1,6 +1,6 @@
 class Participant < ApplicationRecord
-    has_many :enrollments, dependent: :destroy
-    has_many :registries, through: :enrollments
+    has_many :enrollments
+    has_many :registries
     
     validates :name, uniqueness: true
     validates :name, :gender, :date_of_birth, presence: true

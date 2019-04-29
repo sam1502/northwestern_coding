@@ -1,40 +1,47 @@
 class CoordinatorsController < ApplicationController
   before_action :set_coordinator, only: [:show, :edit, :update, :destroy]
 
-  # GET /coordinators
-  # GET /coordinators.json
+  def home
+    if session[:coordinator_id]
+      redirect_to "/login"
+    end
+  end
+
   def index
     @coordinators = Coordinator.all
   end
 
-  # GET /coordinators/1
-  # GET /coordinators/1.json
-  def show
-  end
-
-  # GET /coordinators/new
   def new
     @coordinator = Coordinator.new
   end
 
-  # GET /coordinators/1/edit
-  def edit
+  def login
+    @coordinator = Coordinator.find(params[:email, :password])
+    if @coordinator.nil?
+      flash[:errors] = "Coordinator not found!"
+      redirect_to "/home"
+    else
+      session[:coordinator_id] = @coordinator_id
+      redirect_to "/registries"
+    end
   end
-
-  # POST /coordinators
-  # POST /coordinators.json
+  
   def create
     @coordinator = Coordinator.new(coordinator_params)
 
     respond_to do |format|
       if @coordinator.save
-        format.html { redirect_to @coordinator, notice: 'Coordinator was successfully created.' }
+        format.html { redirect_to "/home", notice: 'Coordinator was successfully created.' }
         format.json { render :show, status: :created, location: @coordinator }
       else
         format.html { render :new }
         format.json { render json: @coordinator.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def show
+    @coordinator = Coordinator.find(params[:coordinator_id])
   end
 
   # PATCH/PUT /coordinators/1

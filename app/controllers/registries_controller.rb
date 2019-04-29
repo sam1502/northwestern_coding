@@ -1,15 +1,14 @@
 class RegistriesController < ApplicationController
   before_action :set_registry, only: [:show, :edit, :update, :destroy]
 
-  # GET /registries
-  # GET /registries.json
   def index
-    @registries = Registry.all
+    @registries = Registry.includes(:coordinators)
+    @coordinators = Coordinator.all
   end
 
-  # GET /registries/1
-  # GET /registries/1.json
   def show
+    @registry= Registry.find
+    
   end
 
   # GET /registries/new
@@ -25,20 +24,13 @@ class RegistriesController < ApplicationController
   # POST /registries.json
   def create
     @registry = Registry.new(registry_params)
-
-    respond_to do |format|
       if @registry.save
-        format.html { redirect_to @registry, notice: 'Registry was successfully created.' }
-        format.json { render :show, status: :created, location: @registry }
+       redirect_to "/registries"
       else
-        format.html { render :new }
-        format.json { render json: @registry.errors, status: :unprocessable_entity }
+        flash[:errors] = "Registry not created!"
       end
-    end
   end
 
-  # PATCH/PUT /registries/1
-  # PATCH/PUT /registries/1.json
   def update
     respond_to do |format|
       if @registry.update(registry_params)
